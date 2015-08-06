@@ -11,9 +11,9 @@ def water_reading():
     echo_pin = 27
     round_to = 1
     unit = 'imperial'
-    temperature = 75
+    temperature = 65
     rount_to = 1
-    pit_depth = 96
+    pit_depth = 40
 
     value = sensor.Measurement(trig_pin, echo_pin, temperature, unit, round_to)
     raw_distance = value.raw_distance()
@@ -24,7 +24,7 @@ def water_reading():
         water_depth = value.depth_metric(raw_distance, pit_depth)
 
     generate_log(water_depth)
-
+    generate_log("Salt level is "+ repr(water_depth/pit_depth*100) + "%")
 
 def generate_log(water_depth):
     '''Log water level reading to a file.'''
