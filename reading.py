@@ -5,8 +5,6 @@ logging.basicConfig(filename=LOG_FILENAME,
 		    format='%(asctime)s %(message)s',
 		    level=logging.DEBUG)
 
-logging.debug('This message should go to the log file')
-
 def water_reading():
     '''Initiate a water level reading.'''
     trig_pin = 17
@@ -25,8 +23,7 @@ def water_reading():
     if unit == 'metric':
         water_depth = value.depth_metric(raw_distance, pit_depth)
 
-    generate_log(water_depth)
-    generate_log("Salt level is "+ repr(water_depth/pit_depth*100) + "%")
+    generate_log("{0:.1f} inches or {1:.2f} %".format(water_depth, water_depth/pit_depth*100))
 
 def generate_log(water_depth):
     '''Log water level reading to a file.'''
