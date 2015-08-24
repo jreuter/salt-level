@@ -1,7 +1,9 @@
 import hcsr04sensor.sensor as sensor
 import logging
 LOG_FILENAME = 'example.log'
-logging.basicConfig(filename=LOG_FILENAME,level=logging.DEBUG)
+logging.basicConfig(filename=LOG_FILENAME,
+		    format='%(asctime)s %(message)s',
+		    level=logging.DEBUG)
 
 logging.debug('This message should go to the log file')
 
@@ -13,7 +15,7 @@ def water_reading():
     unit = 'imperial'
     temperature = 65
     rount_to = 1
-    pit_depth = 40
+    pit_depth = 33
 
     value = sensor.Measurement(trig_pin, echo_pin, temperature, unit, round_to)
     raw_distance = value.raw_distance()
